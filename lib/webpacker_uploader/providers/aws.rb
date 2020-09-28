@@ -15,7 +15,7 @@ module WebpackerUploader
         @bucket = @resource.bucket(options[:bucket])
       end
 
-      def upload!(object_key, file, content_type = '')
+      def upload!(object_key, file, content_type = "")
         object = @bucket.object(object_key)
         object.upload_file(file, content_type: content_type)
       end
