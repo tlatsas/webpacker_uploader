@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.executables   = s.files.grep(%r{^exe/}) { |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "webpacker", ">= 5.2"
+  s.add_dependency "webpacker", ">= 5.1"
   s.add_dependency "mime-types"
 
   s.add_development_dependency "bundler", ">= 1.3.0"

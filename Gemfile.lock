@@ -3,7 +3,7 @@ PATH
   specs:
     webpacker_uploader (0.1.0)
       mime-types
-      webpacker (>= 5.2)
+      webpacker (>= 5.1)
 
 GEM
   remote: https://rubygems.org/
