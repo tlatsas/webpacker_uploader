@@ -8,3 +8,4 @@
 /tmp/
 .ruby-version
 *.gem
+/test/test_app/log/

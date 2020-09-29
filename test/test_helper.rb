@@ -1,5 +1,16 @@
 # frozen_string_literal: true
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "webpacker_uploader"
 
 require "minitest/autorun"
+require "rails"
+require "rails/test_help"
+require "webpacker"
+require "webpacker_uploader"
+
+module TestApp
+  class Application < ::Rails::Application
+    config.root = File.join(File.dirname(__FILE__), "test_app")
+    config.eager_load = true
+  end
+end
+
+TestApp::Application.initialize!

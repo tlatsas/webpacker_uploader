@@ -10,8 +10,8 @@ class WebpackerUploader::Manifest
   private
 
     def load
-      if Webpacker.config.public_manifest_path.exist?
-        JSON.parse(Webpacker.config.public_manifest_path.read).except("entrypoints")
+      if ::Webpacker.config.public_manifest_path.exist?
+        JSON.parse(::Webpacker.config.public_manifest_path.read).except("entrypoints")
       else
         {}
       end

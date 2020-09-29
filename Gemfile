@@ -1,7 +1,10 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in webpacker_uploader.gemspec
 gemspec
 
-gem "rake", "~> 12.0"
-gem "minitest", "~> 5.0"
+gem "rake", ">= 11.1"
+gem "aws-sdk-s3"
+
+group :test do
+  gem "minitest", "~> 5.0"
+end
