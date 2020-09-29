@@ -22,13 +22,13 @@ module WebpackerUploader
 
       private
 
-      def credentials(options)
-        if options[:profile_name].present?
-          ::Aws::SharedCredentials.new(profile_name: options[:profile_name])
-        else
-          ::Aws::Credentials.new(options[:access_key_id], options[:secret_access_key])
+        def credentials(options)
+          if options[:profile_name].present?
+            ::Aws::SharedCredentials.new(profile_name: options[:profile_name])
+          else
+            ::Aws::Credentials.new(options[:access_key_id], options[:secret_access_key])
+          end
         end
-      end
     end
   end
 end
