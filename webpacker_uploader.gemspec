@@ -15,8 +15,7 @@ Gem::Specification.new do |s|
 
   s.metadata = {
     "homepage_uri"    => s.homepage,
-    "source_code_uri" => "https://github.com/tlatsas/webpacker_uploader/tree/v#{s.version}",
-    "changelog_uri"   => "https://github.com/tlatsas/webpacker_uploader/blob/v#{s.version}/CHANGELOG.md"
+    "source_code_uri" => "https://github.com/tlatsas/webpacker_uploader/tree/v#{s.version}"
   }
 
   # Specify which files should be added to the gem when it is released.
