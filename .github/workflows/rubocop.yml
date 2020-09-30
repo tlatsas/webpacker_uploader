@@ -1,0 +1,36 @@
+name: RuboCop
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: RuboCop
+    runs-on: ${{ matrix.os }}
+    env:
+      BUNDLE_JOBS: 4
+      BUNDLE_RETRY: 3
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        ruby: [
+            2.7
+        ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rubocop-
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - name: Bundle install
+        run: |
+          gem install bundler -v 2.1.4
+          bundle config path vendor/bundle
+          bundle install
+      - name: Run RuboCop
+        run: bundle exec rubocop
