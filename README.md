@@ -1,5 +1,9 @@
 # WebpackerUploader
 
+[![Ruby tests](https://img.shields.io/github/workflow/status/tlatsas/webpacker_uploader/Ruby%20tests?style=flat-square)](https://github.com/tlatsas/webpacker_uploader/actions)
+[![RuboCop](https://img.shields.io/github/workflow/status/tlatsas/webpacker_uploader/RuboCop?label=rubocop&style=flat-square)](https://github.com/tlatsas/webpacker_uploader/actions)
+[![Gem](https://img.shields.io/gem/v/webpacker_uploader?style=flat-square)](https://rubygems.org/gems/webpacker_uploader)
+
 Webpacker uploader provides an easy way to upload your assets to AWS S3.
 It knows which files to upload by reading the `manifest.json` file.
 
