@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.homepage      = "https://github.com/tlatsas/webpacker_uploader"
   s.license       = "MIT"
 
-  s.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
+  s.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
 
   s.metadata = {
     "homepage_uri"    => s.homepage,
