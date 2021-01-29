@@ -15,7 +15,7 @@ module WebpackerUploader
     @instance ||= WebpackerUploader::Instance.new
   end
 
-  delegate :logger, :logger=, :upload!, to: :instance
+  delegate :logger, :logger=, :upload!, :ignored_extensions, :ignored_extensions=, to: :instance
 end
 
 require "webpacker_uploader/instance"
