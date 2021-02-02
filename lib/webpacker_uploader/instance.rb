@@ -13,16 +13,18 @@ class WebpackerUploader::Instance
     @manifest ||= WebpackerUploader::Manifest.new
   end
 
-  def upload!(provider)
-    manifest.assets.each do |name, path|
-      path = path[1..-1]
+  def upload!(provider, prefix: nil)
+    manifest.assets.each do |name, js_path|
+      path = js_path[1..-1]
+      remote_path = "#{prefix}/#{path}" unless prefix.nil?
+
       file_path = Rails.root.join("public", path)
 
       if name.end_with?(*IGNORE_EXTENSION)
         logger.info("Skipping: #{file_path}")
       else
         logger.info("Processing: #{file_path}")
-        provider.upload!(path, file_path, content_type_for(path)) unless name.end_with?(*IGNORE_EXTENSION)
+        provider.upload!(remote_path, file_path, content_type_for(path)) unless name.end_with?(*IGNORE_EXTENSION)
       end
     end
   end
