@@ -13,14 +13,15 @@ class WebpackerUploader::Instance
   end
 
   def upload!(provider, prefix: nil)
-    extensions_to_ignore = if ignored_extensions.nil? || !ignored_extensions.is_a?(Array)
-                             logger.warning('Ignored extensions should be specified as an array.')
-                             logger.warning("Ignoring #{DEFAULT_IGNORE_EXTENSION} instead")
+    extensions_to_ignore =
+      if ignored_extensions.nil? || !ignored_extensions.is_a?(Array)
+        logger.warning("Ignored extensions should be specified as an array.")
+        logger.warning("Ignoring #{DEFAULT_IGNORE_EXTENSION} instead")
 
-                             DEFAULT_IGNORE_EXTENSION
-                           else
-                             ignored_extensions
-                           end
+        DEFAULT_IGNORE_EXTENSION
+      else
+        ignored_extensions
+      end
 
     manifest.assets.each do |name, js_path|
       path = js_path[1..-1]
