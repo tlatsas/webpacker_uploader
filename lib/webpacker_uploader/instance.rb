@@ -3,36 +3,42 @@
 require "mime-types"
 
 class WebpackerUploader::Instance
-  # TODO make this configurable
-  IGNORE_EXTENSION = %w[.map].freeze
-  public_constant :IGNORE_EXTENSION
-
   cattr_accessor(:logger) { ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT)) }
+  cattr_accessor(:ignored_extensions) { %w[.map] }
 
   def manifest
     @manifest ||= WebpackerUploader::Manifest.new
   end
 
   def upload!(provider, prefix: nil)
+    if ignored_extensions.nil?
+      raise ArgumentError, "Ignored extensions should be specified as an array"
+    end
+
     manifest.assets.each do |name, js_path|
       path = js_path[1..-1]
-      remote_path = "#{prefix}/#{path}" unless prefix.nil?
+
+      remote_path =
+        if prefix.nil?
+          path
+        else
+          "#{prefix}/#{path}"
+        end
 
       file_path = Rails.root.join("public", path)
 
-      if name.end_with?(*IGNORE_EXTENSION)
+      if name.end_with?(*ignored_extensions)
         logger.info("Skipping: #{file_path}")
       else
         logger.info("Processing: #{file_path}")
-        provider.upload!(remote_path, file_path, content_type_for(path)) unless name.end_with?(*IGNORE_EXTENSION)
+
+        provider.upload!(remote_path, file_path, content_type_for(path))
       end
     end
   end
 
-  private
-
-    def content_type_for(file)
-      fallback = MIME::Types.type_for(file).first.content_type
-      Rack::Mime.mime_type(File.extname(file), fallback)
-    end
+  private def content_type_for(file)
+    fallback = MIME::Types.type_for(file).first.content_type
+    Rack::Mime.mime_type(File.extname(file), fallback)
+  end
 end
