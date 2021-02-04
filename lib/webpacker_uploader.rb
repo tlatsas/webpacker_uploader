@@ -20,4 +20,5 @@ end
 
 require "webpacker_uploader/instance"
 require "webpacker_uploader/manifest"
+require "webpacker_uploader/mime"
 require "webpacker_uploader/version"
