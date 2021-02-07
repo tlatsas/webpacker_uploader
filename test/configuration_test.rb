@@ -2,16 +2,12 @@
 
 require "test_helper"
 
-class ConfigurationTest < Minitest::Test
-  def setup
-    @instance = WebpackerUploader::Instance.new
-    WebpackerUploader.instance = @instance
-  end
-
+class ConfigurationTest < WebpackerUploader::Test
   def test_ignored_extensions
     assert_equal WebpackerUploader.ignored_extensions, [".map"]
 
-    @instance.ignored_extensions = [".css", ".js"]
-    assert_equal WebpackerUploader.ignored_extensions, [".css", ".js"]
+    with_ignored_extensions_config([".css", ".js"]) do
+      assert_equal WebpackerUploader.ignored_extensions, [".css", ".js"]
+    end
   end
 end
