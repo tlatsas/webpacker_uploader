@@ -27,3 +27,15 @@ module TestApp
 end
 
 TestApp::Application.initialize!
+
+module WebpackerUploader::Providers
+  class TestProvider
+    def initialize(asset_objects)
+      @asset_objects = asset_objects
+    end
+
+    def upload!(object_key, file, content_type = "")
+      @asset_objects << { object_key: object_key, file: file, content_type: content_type }
+    end
+  end
+end
