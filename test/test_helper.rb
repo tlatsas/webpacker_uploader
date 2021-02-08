@@ -11,11 +11,11 @@ WebpackerUploader.instance = WebpackerUploader::Instance.new
 class WebpackerUploader::Test < Minitest::Test
   private
     def with_ignored_extensions_config(ignored_extensions)
-      original = WebpackerUploader.instance.ignored_extensions
-      WebpackerUploader.instance.ignored_extensions = ignored_extensions
+      original = WebpackerUploader.ignored_extensions
+      WebpackerUploader.ignored_extensions = ignored_extensions
       yield
     ensure
-      WebpackerUploader.instance.ignored_extensions = original
+      WebpackerUploader.ignored_extensions = original
     end
 end
 
