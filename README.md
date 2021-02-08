@@ -35,18 +35,82 @@ gem "aws-sdk-s3", require: false
 ## Usage
 
 ```ruby
-    require 'webpacker_uploader'
-    require 'webpacker_uploader/providers/aws'
+require "webpacker_uploader"
+require "webpacker_uploader/providers/aws"
 
-    provider_options = {
-      credentials: { profile_name: "staging" },
-      region: "eu-central-1",
-      bucket: "application-assets-20200929124523451600000001"
-    }
+provider_options = {
+  credentials: { profile_name: "staging" },
+  region: "eu-central-1",
+  bucket: "application-assets-20200929124523451600000001"
+}
 
-    provider = WebpackerUploader::Providers::Aws.new(provider_options)
-    WebpackerUploader.upload!(provider)
+provider = WebpackerUploader::Providers::Aws.new(provider_options)
+WebpackerUploader.upload!(provider)
 ```
+
+Currently, the only provider implemented is the AWS S3 provider.
+
+### AWS S3 provider
+
+The AWS S3 provider credentials can be configured in three ways.
+Passing a named profile name:
+
+```ruby
+provider_options = {
+  credentials: { profile_name: "staging" },
+  region: "eu-central-1",
+  bucket: "application-assets-20200929124523451600000001"
+}
+
+provider = WebpackerUploader::Providers::Aws.new(provider_options)
+```
+
+passing the access and the secret keys directly:
+
+```ruby
+provider_options = {
+  credentials: { access_key_id: "AKIAIOSFODNN7EXAMPLE", secret_access_key: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY" },
+  region: "eu-central-1",
+  bucket: "application-assets-20200929124523451600000001"
+}
+
+provider = WebpackerUploader::Providers::Aws.new(provider_options)
+```
+
+or using an EC2 instance profile:
+
+```ruby
+provider_options = {
+  credentials: { instance_profile: true },
+  region: "eu-central-1",
+  bucket: "application-assets-20200929124523451600000001"
+}
+
+provider = WebpackerUploader::Providers::Aws.new(provider_options)
+```
+
+### Ignore files
+
+The uploader can be configured to skip certain files based on the file extension.
+By default `.map` files are excluded. This can be configured through the `ignored_extensions` attribute.
+In order to upload everything pass an empty array.
+
+```ruby
+# skip uploading images
+WebpackerUploader.ignored_extensions = [".png", ".jpg", ".webp"]
+WebpackerUploader.upload!(provider)
+```
+
+### Prefix remote files
+
+Uploaded files can be prefixed by setting the `prefix` parameter during upload:
+
+```ruby
+WebpackerUploader.upload!(provider, prefix: "assets")
+```
+
+This will prefix all remote file paths with `assets` so instead of storing `packs/application-dd6b1cd38bfa093df600.css` it
+will store `assets/packs/application-dd6b1cd38bfa093df600.css`.
 
 ## Development
 
