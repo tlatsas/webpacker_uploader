@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [[0.2.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.2.0) - 2021-02-09
+
 ### Added
 
 - Make file exclusion list configurable. ([#3](https://github.com/tlatsas/webpacker_uploader/pull/3), [@estebanz01](https://github.com/estebanz01))
