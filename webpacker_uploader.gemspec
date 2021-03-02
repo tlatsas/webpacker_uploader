@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
 
   s.metadata = {
     "homepage_uri"    => s.homepage,
+    "bug_tracker_uri" => "https://github.com/tlatsas/webpacker_uploader/issues",
+    "changelog_uri"   => "https://github.com/tlatsas/webpacker_uploader/blob/main/CHANGELOG.md",
     "source_code_uri" => "https://github.com/tlatsas/webpacker_uploader/tree/v#{s.version}"
   }
 
