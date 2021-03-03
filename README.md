@@ -89,18 +89,6 @@ provider_options = {
 provider = WebpackerUploader::Providers::Aws.new(provider_options)
 ```
 
-### Ignore files
-
-The uploader can be configured to skip certain files based on the file extension.
-By default `.map` files are excluded. This can be configured through the `ignored_extensions` attribute.
-In order to upload everything pass an empty array.
-
-```ruby
-# skip uploading images
-WebpackerUploader.ignored_extensions = [".png", ".jpg", ".webp"]
-WebpackerUploader.upload!(provider)
-```
-
 ### Prefix remote files
 
 Uploaded files can be prefixed by setting the `prefix` parameter during upload:
@@ -111,6 +99,42 @@ WebpackerUploader.upload!(provider, prefix: "assets")
 
 This will prefix all remote file paths with `assets` so instead of storing `packs/application-dd6b1cd38bfa093df600.css` it
 will store `assets/packs/application-dd6b1cd38bfa093df600.css`.
+
+### Configuration
+
+WebpackerUploader currently supports the following configuration options:
+
+| option               | description                                                  | default value                         |
+|----------------------|--------------------------------------------------------------|---------------------------------------|
+| ignored_extensions   | Which files uploader should skip based on the file extension | []                                    |
+| log_output           | Log output as we upload files                                | true                                  |
+| public_manifest_path | The webpack manifest path                                    | Webpacker.config.public_manifest_path |
+| public_path          | The webpack public output path                               | Webpacker.config.public_path          |
+
+It can be configured using a block:
+
+```ruby
+WebpackerUploader.configure do |config|
+  config.ignored_extensions = [".png", ".jpg", ".webp"]
+  config.log_output = false
+  config.public_manifest_path = "path/to/manifest.json"
+  config.public_path = "path/to/public/dir"
+end
+```
+
+or directly:
+
+```ruby
+WebpackerUploader.config.log_output = false
+```
+
+The uploader used to skip `.map` files by default. This has changed (see [CHANGELOG.md](https://github.com/tlatsas/webpacker_uploader/blob/main/CHANGELOG.md))
+and everything is uploaded by default now. To retain the previous functionality use:
+
+```ruby
+# skip uploading map files
+WebpackerUploader.config.ignored_extensions = [".map"]
+```
 
 ## Development
 

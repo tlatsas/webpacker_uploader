@@ -2,17 +2,22 @@
 
 class WebpackerUploader::Instance
   cattr_accessor(:logger) { ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT)) }
-  cattr_accessor(:ignored_extensions) { %w[.map] }
+
+  attr_writer :config
 
   def manifest
     @manifest ||= WebpackerUploader::Manifest.new
   end
 
-  def upload!(provider, prefix: nil)
-    if ignored_extensions.nil?
-      raise ArgumentError, "Ignored extensions should be specified as an array"
-    end
+  def config
+    @config ||= WebpackerUploader::Configuration.new
+  end
 
+  def configure
+    yield config
+  end
+
+  def upload!(provider, prefix: nil)
     manifest.assets.each do |name, js_path|
       path = js_path[1..-1]
 
@@ -23,13 +28,14 @@ class WebpackerUploader::Instance
           "#{prefix}/#{path}"
         end
 
-      file_path = Rails.root.join("public", path)
+      file_path = config.public_path.join(path)
 
-      if name.end_with?(*ignored_extensions)
-        logger.info("Skipping #{file_path}")
+      if name.end_with?(*config.ignored_extensions)
+        logger.info("Skipping #{file_path}") if config.log_output?
       else
         content_type = WebpackerUploader::Mime.mime_type(path)
-        logger.info("Processing #{file_path} as #{content_type}")
+
+        logger.info("Processing #{file_path} as #{content_type}") if config.log_output?
 
         provider.upload!(remote_path, file_path, content_type)
       end

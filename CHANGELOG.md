@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Added
+
+- Allow gem configuration. ([@tlatsas](https://github.com/tlatsas))
+
+### Changed
+
+- With the newly introduced configuration options, ignored file extension list is now empty by default.
+  This means that every file type will be uploaded unless otherwise specified. ([@tlatsas](https://github.com/tlatsas))
+
 ## [[0.2.1]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.2.1) - 2021-02-09
 
 ### Added

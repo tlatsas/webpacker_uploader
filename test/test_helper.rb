@@ -6,19 +6,6 @@ require "rails/test_help"
 require "webpacker"
 require "webpacker_uploader"
 
-WebpackerUploader.instance = WebpackerUploader::Instance.new
-
-class WebpackerUploader::Test < Minitest::Test
-  private
-    def with_ignored_extensions_config(ignored_extensions)
-      original = WebpackerUploader.ignored_extensions
-      WebpackerUploader.ignored_extensions = ignored_extensions
-      yield
-    ensure
-      WebpackerUploader.ignored_extensions = original
-    end
-end
-
 module TestApp
   class Application < ::Rails::Application
     config.root = File.join(File.dirname(__FILE__), "test_app")
@@ -38,4 +25,11 @@ module WebpackerUploader::Providers
       @asset_objects << { object_key: object_key, file: file, content_type: content_type }
     end
   end
+end
+
+module WebpackerUploader
+  def reset!
+    WebpackerUploader.instance.config = nil
+  end
+  module_function :reset!
 end
