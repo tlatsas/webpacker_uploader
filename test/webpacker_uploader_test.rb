@@ -6,6 +6,12 @@ class WebpackerUploaderTest < Minitest::Test
   def setup
     @asset_objects = []
     @provider = WebpackerUploader::Providers::TestProvider.new(@asset_objects)
+
+    WebpackerUploader.config.log_output = false
+  end
+
+  def teardown
+    WebpackerUploader.reset!
   end
 
   def test_upload
