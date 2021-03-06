@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [[0.3.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.3.0) - 2021-03-06
+
 ### Added
 
 - Allow gem configuration. ([@tlatsas](https://github.com/tlatsas))
