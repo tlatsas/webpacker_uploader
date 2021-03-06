@@ -51,6 +51,12 @@ class ConfigurationTest < Minitest::Test
     assert_equal false, WebpackerUploader.config.log_output?
     assert_equal "path/to/manifest.json", WebpackerUploader.config.public_manifest_path.to_s
     assert_equal "path/to/public/dir", WebpackerUploader.config.public_path.to_s
+
+    assert_raises(NoMethodError) do
+      WebpackerUploader.configure do |c|
+        c.unknown = true
+      end
+    end
   end
 
   def test_pathname_casting
