@@ -13,8 +13,8 @@ class ConfigurationTest < Minitest::Test
 
   def test_default_config_options
     assert_empty @config.ignored_extensions
-    assert_equal true, @config.log_output
-    assert_equal true, @config.log_output?
+    assert @config.log_output
+    assert @config.log_output?
 
     public_manifest_path = Pathname.new(File.expand_path("test_app/public/packs/manifest.json", __dir__))
     assert_equal public_manifest_path, @config.public_manifest_path
@@ -28,8 +28,8 @@ class ConfigurationTest < Minitest::Test
     assert_equal [".css", ".js"], @config.ignored_extensions
 
     @config.log_output = false
-    assert_equal false, @config.log_output
-    assert_equal false, @config.log_output?
+    refute @config.log_output
+    refute @config.log_output?
 
     @config.public_manifest_path = "test_app/manifest.json"
     assert_equal "test_app/manifest.json", @config.public_manifest_path.to_s
@@ -47,8 +47,8 @@ class ConfigurationTest < Minitest::Test
     end
 
     assert_equal [".js"], WebpackerUploader.config.ignored_extensions
-    assert_equal false, WebpackerUploader.config.log_output
-    assert_equal false, WebpackerUploader.config.log_output?
+    refute WebpackerUploader.config.log_output
+    refute WebpackerUploader.config.log_output?
     assert_equal "path/to/manifest.json", WebpackerUploader.config.public_manifest_path.to_s
     assert_equal "path/to/public/dir", WebpackerUploader.config.public_path.to_s
 
