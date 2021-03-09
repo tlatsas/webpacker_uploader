@@ -15,14 +15,14 @@ S3 + CDN, outside of your Rails application.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "webpacker_uploader"
+gem "webpacker_uploader", require: false
 ```
 
-And then execute:
+and run:
 
     $ bundle install
 
-Or install it yourself as:
+or:
 
     $ gem install webpacker_uploader
 
@@ -33,6 +33,8 @@ gem "aws-sdk-s3", require: false
 ```
 
 ## Usage
+
+Usually, in a Rake task you would add the following to upload the assets to AWS S3:
 
 ```ruby
 require "webpacker_uploader"
