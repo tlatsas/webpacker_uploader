@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "webpacker", ">= 5.1"
   s.add_dependency "mime-types"
+  s.add_dependency "rack", "~> 2.0"
 
   s.add_development_dependency "bundler", ">= 1.3.0"
   s.add_development_dependency "rubocop", "1.11.0"
