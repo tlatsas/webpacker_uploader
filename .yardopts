@@ -1,0 +1,8 @@
+--title "WebpackerUploader Documentation"
+--readme README.md
+--markup markdown
+--hide-void-return
+--no-private
+-
+CHANGELOG.md
+MIT-LICENSE

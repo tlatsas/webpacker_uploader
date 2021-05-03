@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WebpackerUploader::Manifest
+class WebpackerUploader::Manifest # @private
   attr_reader :assets
 
   def initialize
