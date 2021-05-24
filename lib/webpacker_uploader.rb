@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require "active_support/core_ext/object/blank"
-require "active_support/logger"
-require "active_support/tagged_logging"
 
 module WebpackerUploader
   extend self
@@ -20,9 +18,6 @@ module WebpackerUploader
   # @!attribute [rw] config
   #   @see Instance#config
   #   @!scope class
-  # @!attribute [rw] logger
-  #   @see Instance.logger
-  #   @!scope class
   # @!method configure
   #   @see Instance#configure
   #   @!scope class
@@ -30,7 +25,7 @@ module WebpackerUploader
   #   @return [void]
   #   @see Instance#upload!
   #   @!scope class
-  delegate :logger, :logger=, :configure, :config, :upload!, to: :instance
+  delegate :configure, :config, :upload!, to: :instance
 end
 
 require "webpacker_uploader/configuration"

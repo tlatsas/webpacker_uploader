@@ -109,6 +109,7 @@ WebpackerUploader currently supports the following configuration options:
 | option               | description                                                  | default value                         |
 |----------------------|--------------------------------------------------------------|---------------------------------------|
 | ignored_extensions   | Which files uploader should skip based on the file extension | []                                    |
+| logger               | The logger to use for logging                                | ActiveSupport::Logger.new(STDOUT)     |
 | log_output           | Log output as we upload files                                | true                                  |
 | public_manifest_path | The webpack manifest path                                    | Webpacker.config.public_manifest_path |
 | public_path          | The webpack public output path                               | Webpacker.config.public_path          |
