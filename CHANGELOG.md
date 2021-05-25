@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Changed
+
+- Logger is now part of the configuration object instead of a class attribute. ([#9](https://github.com/tlatsas/webpacker_uploader/pull/9), [@tlatsas](https://github.com/tlatsas))
+
 ## [[0.3.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.3.0) - 2021-03-06
 
 ### Added

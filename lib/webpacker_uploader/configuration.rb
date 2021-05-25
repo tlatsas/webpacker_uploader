@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "active_support/logger"
+require "active_support/tagged_logging"
+
 # This is the class which holds the configuration options.
 #
 # Options are set and retrieved using `WebpackerUploader.config`
@@ -7,6 +10,9 @@
 class WebpackerUploader::Configuration
   # @return [Array] the file extentions ignored by the uploader.
   attr_accessor :ignored_extensions
+
+  # @return [ActiveSupport::Logger] the logger to use.
+  attr_accessor :logger
 
   # @return [Boolean] whether or not to log operations.
   attr_accessor :log_output
@@ -21,6 +27,7 @@ class WebpackerUploader::Configuration
 
   def initialize
     @ignored_extensions = []
+    @logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT))
     @log_output = true
     @public_manifest_path = ::Webpacker.config.public_manifest_path
     @public_path = ::Webpacker.config.public_path

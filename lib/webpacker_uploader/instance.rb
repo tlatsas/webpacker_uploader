@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class WebpackerUploader::Instance
-  # @!attribute [rw] logger
-  #   @!scope class
-  cattr_accessor(:logger) { ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT)) }
-
   attr_writer :config
 
   # @private
@@ -63,11 +59,11 @@ class WebpackerUploader::Instance
       file_path = config.public_path.join(path)
 
       if name.end_with?(*config.ignored_extensions)
-        logger.info("Skipping #{file_path}") if config.log_output?
+        config.logger.info("Skipping #{file_path}") if config.log_output?
       else
         content_type = WebpackerUploader::Mime.mime_type(path)
 
-        logger.info("Processing #{file_path} as #{content_type}") if config.log_output?
+        config.logger.info("Processing #{file_path} as #{content_type}") if config.log_output?
 
         provider.upload!(remote_path, file_path, content_type)
       end
