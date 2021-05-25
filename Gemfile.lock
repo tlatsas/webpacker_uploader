@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    webpacker_uploader (0.3.0)
+    webpacker_uploader (0.4.0)
       mime-types
       rack (~> 2.0)
       webpacker (>= 5.1)
@@ -58,7 +58,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0512)
+    mime-types-data (3.2021.0225)
     mini_portile2 (2.5.1)
     minitest (5.14.2)
     nokogiri (1.11.5)
@@ -110,7 +110,7 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.0.0)
-    webpacker (5.3.0)
+    webpacker (5.4.0)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
