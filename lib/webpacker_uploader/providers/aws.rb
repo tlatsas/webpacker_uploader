@@ -45,7 +45,7 @@ module WebpackerUploader
       #   }
       #   provider = WebpackerUploader::Providers::Aws.new(provider_options)
       def initialize(options)
-        @client = ::Aws::S3::Client.new(credentials: credentials(options[:credentials]), region: options[:region])
+        @client = ::Aws::S3::Client.new(client_options(options))
         @resource = ::Aws::S3::Resource.new(client: @client)
         @bucket = @resource.bucket(options[:bucket])
       end
@@ -62,13 +62,17 @@ module WebpackerUploader
       end
 
       private
+        def client_options(options)
+          opts = { region: options[:region] }
+          opts[:profile] = options[:profile_name] if options.key? :profile_name
+          opts[:credentials] = credentials(options) if credentials(options)
+          opts
+        end
 
         def credentials(options)
-          if options[:profile_name].present?
-            ::Aws::SharedCredentials.new(profile_name: options[:profile_name])
-          elsif options.key?(:instance_profile) && options[:instance_profile]
+          if options.key?(:instance_profile) && options[:instance_profile]
             ::Aws::InstanceProfileCredentials.new
-          else
+          elsif options.key?(:access_key_id)
             ::Aws::Credentials.new(options[:access_key_id], options[:secret_access_key])
           end
         end
