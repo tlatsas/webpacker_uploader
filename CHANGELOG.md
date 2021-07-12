@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [[0.5.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.5.0) - 2021-07-12
+
 ### Fixed
 
 - Change the way we pass the named profile option in the AWS provider. This allows the full resolution of credentials implemented
