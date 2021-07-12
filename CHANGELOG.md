@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Fixed
+
+- Change the way we pass the named profile option in the AWS provider. This allows the full resolution of credentials implemented
+  in Aws::CredentialProviderChain to work for all kinds of role assumptions, profile extensions, etc. ([#10](https://github.com/tlatsas/webpacker_uploader/pull/10), [@eirc](https://github.com/eirc))
+
 ## [[0.4.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.4.0) - 2021-05-25
 
 ### Changed
