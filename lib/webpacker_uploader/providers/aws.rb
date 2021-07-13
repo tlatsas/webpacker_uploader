@@ -7,7 +7,8 @@ module WebpackerUploader
   module Providers
     # AWS provider uploads files to AWS S3. It uses the +aws-sdk-s3+ gem.
     class Aws
-      attr_reader :client, :resource, :bucket # @private
+      # AWS provider error class. Raised when the provided AWS client credentials options are wrong.
+      class CredentialsError < StandardError; end
 
       # @param [Hash] options
       #   * :region (String) The S3 region name.
@@ -18,7 +19,12 @@ module WebpackerUploader
       #     * :access_key_id (String) the AWS credentials access id.
       #     * :secret_access_key (String) the AWS credentials secret access key.
       #
-      # @example Initialize the using a named profile:
+      # @note Any unknown options will be passed directly to the +Aws::S3::Client+ class
+      #   during initialization.
+      #
+      # @raise [CredentialsError] if the credential options Hash is not correct.
+      #
+      # @example Initialize using a named profile:
       #
       #   provider_options = {
       #     credentials: { profile_name: "staging" },
@@ -45,9 +51,11 @@ module WebpackerUploader
       #   }
       #   provider = WebpackerUploader::Providers::Aws.new(provider_options)
       def initialize(options)
-        @client = ::Aws::S3::Client.new(client_options(options))
-        @resource = ::Aws::S3::Resource.new(client: @client)
-        @bucket = @resource.bucket(options[:bucket])
+        @region      = options.delete(:region)
+        @bucket_name = options.delete(:bucket)
+        @credentials = credentials(options.delete(:credentials))
+        @aws_options = options
+        @resource    = ::Aws::S3::Resource.new(client: client)
       end
 
       # Uploads a file to AWS S3.
@@ -57,24 +65,42 @@ module WebpackerUploader
       # @param content_type [String] The content type that will be set to the S3 object.
       # @return [void]
       def upload!(object_key, file, content_type = "")
-        object = @bucket.object(object_key)
+        object = @resource.bucket(@bucket_name).object(object_key)
         object.upload_file(file, content_type: content_type)
       end
 
       private
-        def client_options(options)
-          opts = { region: options[:region] }
-          opts[:profile] = options[:profile_name] if options.key? :profile_name
-          opts[:credentials] = credentials(options) if credentials(options)
-          opts
+        def credentials(options)
+          if options.key?(:profile_name)
+            { profile: options[:profile_name] }
+          elsif options.key?(:instance_profile) && options[:instance_profile]
+            ::Aws::InstanceProfileCredentials.new
+          elsif options.key?(:access_key_id) && options.key?(:secret_access_key)
+            ::Aws::Credentials.new(options[:access_key_id], options[:secret_access_key])
+          else
+            raise CredentialsError, "Wrong AWS provider credentials options."
+          end
         end
 
-        def credentials(options)
-          if options.key?(:instance_profile) && options[:instance_profile]
-            ::Aws::InstanceProfileCredentials.new
-          elsif options.key?(:access_key_id)
-            ::Aws::Credentials.new(options[:access_key_id], options[:secret_access_key])
-          end
+        def profile?
+          @credentials.is_a?(Hash) && @credentials.key?(:profile)
+        end
+
+        def credentials_object?
+          !profile?
+        end
+
+        def client
+          ::Aws::S3::Client.new(client_options)
+        end
+
+        def client_options
+          opts = {}
+          opts.merge!(@aws_options)
+          opts[:region] = @region
+          opts.merge!(@credentials) if profile?
+          opts[:credentials] = @credentials if credentials_object?
+          opts
         end
     end
   end
