@@ -9,3 +9,4 @@
 .ruby-version
 *.gem
 /test/test_app/log/
+/integration/dummy/log/
