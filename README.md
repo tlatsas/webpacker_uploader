@@ -148,6 +148,19 @@ interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`.
 
+## Integration tests
+
+This gem also provides an integration test suite. It runs using [localstack](https://github.com/localstack/localstack/).
+To run the integration tests, install docker on your system and spin up a localstack container running the s3 service.
+
+```shell
+docker compose -f "integration/docker-compose.yml" up --detach
+```
+
+To run the tests, use `rake test:integration`.
+
+To stop the container once done run: `docker-compose -f "integration/docker-compose.yml" down` 
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/tlatsas/webpacker_uploader.

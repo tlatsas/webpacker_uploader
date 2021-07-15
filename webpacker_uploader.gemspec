@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
     "source_code_uri" => "https://github.com/tlatsas/webpacker_uploader/tree/v#{s.version}"
   }
 
-  s.files         = `git ls-files`.split("\n").reject { |f| f.match(%r{^(bin|test|.github)/}) }
+  s.files         = `git ls-files`.split("\n").reject { |f| f.match(%r{^(bin|test|integration|.github)/}) }
   s.test_files    = `git ls-files -- test/*`.split("\n")
   s.require_paths = ["lib"]
 
