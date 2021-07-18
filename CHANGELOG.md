@@ -6,7 +6,11 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
-- Allow passing arbitrary options to the AWS S3 Client through the AWS provider. ([@tlatsas](https://github.com/tlatsas))
+- Allow passing arbitrary options to the AWS S3 Client through the AWS provider. ([#11](https://github.com/tlatsas/webpacker_uploader/pull/11), ([@tlatsas](https://github.com/tlatsas))
+
+### Fixed
+
+- Fix undefined method delegate for WebpackerUploader:Module when using the console script. ([#13](https://github.com/tlatsas/webpacker_uploader/pull/13), ([@tlatsas](https://github.com/tlatsas))
 
 ## [[0.5.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.5.0) - 2021-07-12
 
