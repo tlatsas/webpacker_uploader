@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [[0.6.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.6.0) - 2021-07-20
+
 ### Added
 
 - Allow passing arbitrary options to the AWS S3 Client through the AWS provider. ([#11](https://github.com/tlatsas/webpacker_uploader/pull/11), [@tlatsas](https://github.com/tlatsas))
