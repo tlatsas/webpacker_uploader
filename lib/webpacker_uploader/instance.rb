@@ -19,6 +19,9 @@ class WebpackerUploader::Instance
   # @example Get the list of excluded file extension
   #   puts WebpackerUploader.config.ignored_extensions
   #
+  # @example Get the cache control header
+  #   #   puts WebpackerUploader.config.cache_control
+  #
   # @see WebpackerUploader::Configuration
   def config
     @config ||= WebpackerUploader::Configuration.new
@@ -30,6 +33,7 @@ class WebpackerUploader::Instance
   # @example
   #   WebpackerUploader.configure do |config|
   #     config.ignored_extensions = [".png", ".jpg", ".webp"]
+  #     config.cache_control = "max-age=31536000"
   #     config.log_output = false
   #     config.public_manifest_path = "path/to/manifest.json"
   #     config.public_path = "path/to/public/dir"
@@ -63,9 +67,9 @@ class WebpackerUploader::Instance
       else
         content_type = WebpackerUploader::Mime.mime_type(path)
 
-        config.logger.info("Processing #{file_path} as #{content_type}") if config.log_output?
+        config.logger.info("Processing #{file_path} as #{content_type} with cache_control=#{config.cache_control}") if config.log_output?
 
-        provider.upload!(remote_path, file_path, content_type)
+        provider.upload!(remote_path, file_path, content_type, config.cache_control)
       end
     end
   end

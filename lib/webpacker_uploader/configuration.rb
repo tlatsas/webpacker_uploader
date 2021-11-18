@@ -11,6 +11,9 @@ class WebpackerUploader::Configuration
   # @return [Array] the file extentions ignored by the uploader.
   attr_accessor :ignored_extensions
 
+  # @return [String] the cache_control header to use.
+  attr_accessor :cache_control
+
   # @return [ActiveSupport::Logger] the logger to use.
   attr_accessor :logger
 
@@ -27,6 +30,7 @@ class WebpackerUploader::Configuration
 
   def initialize
     @ignored_extensions = []
+    @cache_control = ''
     @logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT))
     @log_output = true
     @public_manifest_path = ::Webpacker.config.public_manifest_path

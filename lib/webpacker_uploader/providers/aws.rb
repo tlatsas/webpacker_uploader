@@ -64,9 +64,9 @@ module WebpackerUploader
       # @param file [Pathname] Path of the local file.
       # @param content_type [String] The content type that will be set to the S3 object.
       # @return [void]
-      def upload!(object_key, file, content_type = "")
+      def upload!(object_key, file, content_type = "", cache_control = "")
         object = @resource.bucket(@bucket_name).object(object_key)
-        object.upload_file(file, content_type: content_type)
+        object.upload_file(file, content_type: content_type, cache_control: cache_control)
       end
 
       private
