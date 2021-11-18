@@ -30,7 +30,7 @@ class WebpackerUploader::Configuration
 
   def initialize
     @ignored_extensions = []
-    @cache_control = ''
+    @cache_control = ""
     @logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT))
     @log_output = true
     @public_manifest_path = ::Webpacker.config.public_manifest_path
