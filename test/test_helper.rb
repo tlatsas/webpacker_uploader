@@ -21,7 +21,7 @@ module WebpackerUploader::Providers
       @asset_objects = asset_objects
     end
 
-    def upload!(object_key, file, content_type = "", cache_control)
+    def upload!(object_key, file, content_type = "", cache_control = "")
       @asset_objects << { object_key: object_key, file: file, content_type: content_type, cache_control: cache_control }
     end
   end

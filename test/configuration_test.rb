@@ -14,8 +14,6 @@ class ConfigurationTest < Minitest::Test
   def test_default_config_options
     assert_empty @config.ignored_extensions
 
-    assert_empty @config.cache_control
-
     assert_instance_of ActiveSupport::Logger, @config.logger
 
     assert @config.log_output
@@ -31,9 +29,6 @@ class ConfigurationTest < Minitest::Test
   def test_changing_config_options
     @config.ignored_extensions = [".css", ".js"]
     assert_equal [".css", ".js"], @config.ignored_extensions
-
-    @config.cache_control = "max-age=31536000"
-    assert_equal "max-age=31536000", @config.cache_control
 
     @config.logger = Logger.new(STDOUT)
     assert_instance_of Logger, @config.logger
@@ -52,7 +47,6 @@ class ConfigurationTest < Minitest::Test
   def test_configure_block
     WebpackerUploader.configure do |c|
       c.ignored_extensions = [".js"]
-      c.cache_control = "max-age=31536000"
       c.logger = Logger.new(STDOUT)
       c.log_output = false
       c.public_manifest_path = "path/to/manifest.json"
@@ -60,7 +54,6 @@ class ConfigurationTest < Minitest::Test
     end
 
     assert_equal [".js"], WebpackerUploader.config.ignored_extensions
-    assert_equal "max-age=31536000", WebpackerUploader.config.cache_control
     assert_instance_of Logger, WebpackerUploader.config.logger
     refute WebpackerUploader.config.log_output
     refute WebpackerUploader.config.log_output?

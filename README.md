@@ -100,8 +100,11 @@ Uploaded files can be prefixed by setting the `prefix` parameter during upload:
 WebpackerUploader.upload!(provider, prefix: "assets")
 ```
 
-This will prefix all remote file paths with `assets` so instead of storing `packs/application-dd6b1cd38bfa093df600.css` it
-will store `assets/packs/application-dd6b1cd38bfa093df600.css`.
+### Add a cache-control header to remote files
+
+```ruby
+WebpackerUploader.upload!(provider, cache_control: 'max-age=31536008')
+```
 
 ### Configuration
 
@@ -139,12 +142,6 @@ and everything is uploaded by default now. To retain the previous functionality 
 ```ruby
 # skip uploading map files
 WebpackerUploader.config.ignored_extensions = [".map"]
-```
-
-To add cache-control header use:
-
-```ruby
-WebpackerUploader.config.cache_control = 'max-age=31536000'
 ```
 
 ## Development
