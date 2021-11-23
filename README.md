@@ -100,6 +100,10 @@ Uploaded files can be prefixed by setting the `prefix` parameter during upload:
 WebpackerUploader.upload!(provider, prefix: "assets")
 ```
 
+This will prefix all remote file paths with `assets` so instead of storing `packs/application-dd6b1cd38bfa093df600.css` it
+will store `assets/packs/application-dd6b1cd38bfa093df600.css`.
+
+
 ### Add a cache-control header to remote files
 
 ```ruby
