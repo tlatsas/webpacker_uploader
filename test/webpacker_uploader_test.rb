@@ -32,7 +32,6 @@ class WebpackerUploaderTest < Minitest::Test
 
   def test_upload_with_cache_control
     WebpackerUploader.upload!(@provider, cache_control: "cache_control")
-    puts @asset_objects
     assert_equal "cache_control", @asset_objects.first[:cache_control]
   end
 end
