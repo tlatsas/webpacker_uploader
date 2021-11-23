@@ -45,7 +45,8 @@ class WebpackerUploader::Instance
   # @return [void]
   # @param provider [WebpackerUploader::Providers::Aws] A provider to use for file uploading.
   # @param prefix [String] Used to prefix the remote file paths.
-  def upload!(provider, prefix: nil)
+  # @param cache_control [String] Used to add cache-control header to files.
+  def upload!(provider, prefix: nil, cache_control: nil)
     manifest.assets.each do |name, js_path|
       path = js_path[1..-1]
 
@@ -65,7 +66,7 @@ class WebpackerUploader::Instance
 
         config.logger.info("Processing #{file_path} as #{content_type}") if config.log_output?
 
-        provider.upload!(remote_path, file_path, content_type)
+        provider.upload!(remote_path, file_path, content_type, cache_control)
       end
     end
   end

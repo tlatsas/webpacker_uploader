@@ -29,4 +29,9 @@ class WebpackerUploaderTest < Minitest::Test
     assert_instance_of Pathname, @asset_objects.first[:file]
     assert_equal "text/css", @asset_objects.first[:content_type]
   end
+
+  def test_upload_with_cache_control
+    WebpackerUploader.upload!(@provider, cache_control: "cache_control")
+    assert_equal "cache_control", @asset_objects.first[:cache_control]
+  end
 end
