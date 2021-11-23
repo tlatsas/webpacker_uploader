@@ -127,7 +127,6 @@ It can be configured using a block:
 ```ruby
 WebpackerUploader.configure do |config|
   config.ignored_extensions = [".png", ".jpg", ".webp"]
-  config.cache_control = "max-age=31536000"
   config.log_output = false
   config.public_manifest_path = "path/to/manifest.json"
   config.public_path = "path/to/public/dir"
