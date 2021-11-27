@@ -107,11 +107,16 @@ WebpackerUploader.upload!(provider, prefix: "assets")
 This will prefix all remote file paths with `assets` so instead of storing `packs/application-dd6b1cd38bfa093df600.css` it
 will store `assets/packs/application-dd6b1cd38bfa093df600.css`.
 
-
-### Add a cache-control header to remote files
+### Add a cache-control directive to remote files
 
 ```ruby
-WebpackerUploader.upload!(provider, cache_control: 'max-age=31536008')
+WebpackerUploader.upload!(provider, cache_control: "public, max-age=3600")
+```
+
+This option is used to specify caching behavior along the request/reply chain.
+
+```text
+⚠️ This option is applied to all uploaded files, not on a per-file basis.
 ```
 
 ### Configuration
