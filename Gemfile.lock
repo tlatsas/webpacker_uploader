@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    webpacker_uploader (0.6.0)
+    webpacker_uploader (0.7.0)
       mime-types
       rack (~> 2.0)
       webpacker (>= 5.1)
