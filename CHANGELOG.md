@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [[0.7.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.7.0) - 2021-11-27
+
+### Added
+
+- Support setting Cache-Control on uploaded files. ([#16](https://github.com/tlatsas/webpacker_uploader/pull/16), [@Dimitris24sta23](https://github.com/Dimitris24sta23))
+
 ## [[0.6.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.6.0) - 2021-07-20
 
 ### Added
