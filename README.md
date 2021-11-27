@@ -21,11 +21,15 @@ gem "webpacker_uploader", require: false
 
 and run:
 
-    $ bundle install
+```sh
+bundle install
+```
 
 or:
 
-    $ gem install webpacker_uploader
+```sh
+gem install webpacker_uploader
+```
 
 To use the aws provider install the aws-sdk-s3 gem. Add in your Gemfile:
 
