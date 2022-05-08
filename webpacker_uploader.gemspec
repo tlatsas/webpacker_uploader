@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "webpacker", ">= 5.1"
+  s.add_dependency "activesupport", "< 7.0"
   s.add_dependency "mime-types"
   s.add_dependency "rack", "~> 2.0"
 
