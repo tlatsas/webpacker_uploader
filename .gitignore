@@ -10,3 +10,4 @@
 *.gem
 /test/test_app/log/
 /integration/dummy/log/
+.DS_Store

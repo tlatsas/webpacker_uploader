@@ -64,7 +64,7 @@ class WebpackerUploader::Instance
       else
         content_type = WebpackerUploader::Mime.mime_type(path)
 
-        config.logger.info("Processing #{file_path} as #{content_type}") if config.log_output?
+        config.logger.info("Processing #{file_path} as #{content_type} to #{remote_path}") if config.log_output?
 
         provider.upload!(remote_path, file_path, content_type, cache_control)
       end
