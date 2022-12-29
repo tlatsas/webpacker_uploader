@@ -1,7 +1,7 @@
 # WebpackerUploader
 
-[![Ruby tests](https://img.shields.io/github/workflow/status/tlatsas/webpacker_uploader/Ruby%20tests?style=flat-square)](https://github.com/tlatsas/webpacker_uploader/actions)
-[![RuboCop](https://img.shields.io/github/workflow/status/tlatsas/webpacker_uploader/RuboCop?label=rubocop&style=flat-square)](https://github.com/tlatsas/webpacker_uploader/actions)
+[![Ruby tests](https://img.shields.io/github/actions/workflow/status/tlatsas/webpacker_uploader/ruby.yml?style=flat-square)](https://github.com/tlatsas/webpacker_uploader/actions)
+[![RuboCop](https://img.shields.io/github/actions/workflow/status/tlatsas/webpacker_uploader/rubocop.yml?label=rubocop&style=flat-square)](https://github.com/tlatsas/webpacker_uploader/actions)
 [![Gem](https://img.shields.io/gem/v/webpacker_uploader?style=flat-square)](https://rubygems.org/gems/webpacker_uploader)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg?style=flat-square)](https://www.rubydoc.info/gems/webpacker_uploader)
 
@@ -124,7 +124,7 @@ This option is used to specify caching behavior along the request/reply chain.
 WebpackerUploader currently supports the following configuration options:
 
 | option               | description                                                  | default value                         |
-|----------------------|--------------------------------------------------------------|---------------------------------------|
+| -------------------- | ------------------------------------------------------------ | ------------------------------------- |
 | ignored_extensions   | Which files uploader should skip based on the file extension | []                                    |
 | logger               | The logger to use for logging                                | ActiveSupport::Logger.new(STDOUT)     |
 | log_output           | Log output as we upload files                                | true                                  |
@@ -175,7 +175,7 @@ docker compose -f "integration/docker-compose.yml" up --detach
 
 To run the tests, use `rake test:integration`.
 
-To stop the container once done run: `docker-compose -f "integration/docker-compose.yml" down` 
+To stop the container once done run: `docker-compose -f "integration/docker-compose.yml" down`
 
 ## Contributing
 
