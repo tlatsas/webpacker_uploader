@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+## [[0.7.1]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.7.1) - 2023-01-05
+
+### Changed
+
+- Bump dependencies
+
 ## [[0.7.0]](https://github.com/tlatsas/webpacker_uploader/releases/tag/v0.7.0) - 2021-11-27
 
 ### Added
