@@ -4,7 +4,7 @@ PATH
     webpacker_uploader (0.7.1)
       activesupport (< 7.0)
       mime-types
-      rack (~> 2.0)
+      rack (>= 2, < 4)
       webpacker (>= 5.1)
 
 GEM
@@ -69,7 +69,7 @@ GEM
     parser (3.1.2.0)
       ast (~> 2.4.1)
     racc (1.6.2)
-    rack (2.2.5)
+    rack (2.2.6.2)
     rack-proxy (0.7.4)
       rack
     rack-test (2.0.2)
