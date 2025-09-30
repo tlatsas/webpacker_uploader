@@ -11,13 +11,11 @@ jobs:
       BUNDLE_RETRY: 3
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
-        ruby: [
-            2.7
-        ]
+        os: [ubuntu-latest]
+        ruby: [2.7]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
