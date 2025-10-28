@@ -29,6 +29,12 @@ Gem::Specification.new do |s|
   s.add_dependency "mime-types"
   s.add_dependency "rack", ">= 2", "< 4"
 
+  # Ruby 3.4+ compat
+  s.add_dependency "base64"
+  s.add_dependency "bigdecimal"
+  s.add_dependency "mutex_m"
+  s.add_dependency "drb"
+
   s.add_development_dependency "bundler", ">= 1.3.0"
   s.add_development_dependency "rubocop", "1.11.0"
   s.add_development_dependency "rubocop-performance"
